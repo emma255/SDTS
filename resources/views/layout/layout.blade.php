@@ -112,7 +112,7 @@
                   </div>
                   <div class="pull-right">
                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          {{ __('Sign out') }}</a>
+                          {{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                     </form>
@@ -172,14 +172,14 @@
             </ul>
           </li>
           <li class="treeview">
-            <a href="#">📜</i> <span>Payslips</span>
+            <a href="#">📜<span>Payslips</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="{{ asset('payslip')}}"><i class="fa fa-plus"></i> <span>Upload Payslips</span></a></li>
-              <li><a href="{{ asset('#')}}"><i class="fa fa-eye"></i> <span>View Payslips</span></a></li>
+              <li><a href="{{ asset('payslip/show')}}"><i class="fa fa-eye"></i> <span>View Payslips</span></a></li>
             </ul>
           </li>
           <li>
@@ -208,6 +208,13 @@
       <!-- Main content -->
       <section class="content container-fluid">
 
+        @if (Session::has('flash_message'))
+
+        <div class="alert alert-success text-capitalize text-center">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> &times;</button>
+        {{ Session::get('flash_message') }} {{Session::forget('flash_message')}}</div>
+
+        @endif
         @yield('contents')
 
       </section>

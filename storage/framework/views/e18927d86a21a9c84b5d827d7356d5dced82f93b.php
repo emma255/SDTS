@@ -13,7 +13,7 @@
 
                         <input placeholder="Payment for" class="form-control" type="text" value="" name="purpose" id="purpose" required><br>
                         <input placeholder="Description" class="form-control" type="text" value="" name="description" id="description" required><br>
-                        <label>Picture</label><input type='file' name="picture" id="picture" required><br>
+                        <label>Picture</label><input type='file' name="slip" id="slip" required><br>
                         <input type="submit" class="btn btn-default" value="save" name="savebtn" id="savebtn">
                     </form>
                 </td> 

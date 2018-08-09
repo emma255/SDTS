@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <html lang="<?php echo e(app()->getLocale()); ?>">
 
 <head>

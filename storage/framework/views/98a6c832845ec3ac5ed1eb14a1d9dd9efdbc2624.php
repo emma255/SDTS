@@ -112,7 +112,7 @@
                   </div>
                   <div class="pull-right">
                     <a class="btn btn-default btn-flat" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          <?php echo e(__('Sign out')); ?></a>
+                          <?php echo e(__('Logout')); ?></a>
                     <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                       <?php echo csrf_field(); ?>
                     </form>
@@ -172,14 +172,14 @@
             </ul>
           </li>
           <li class="treeview">
-            <a href="#">📜</i> <span>Payslips</span>
+            <a href="#">📜<span>Payslips</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
               <li><a href="<?php echo e(asset('payslip')); ?>"><i class="fa fa-plus"></i> <span>Upload Payslips</span></a></li>
-              <li><a href="<?php echo e(asset('#')); ?>"><i class="fa fa-eye"></i> <span>View Payslips</span></a></li>
+              <li><a href="<?php echo e(asset('payslip/show')); ?>"><i class="fa fa-eye"></i> <span>View Payslips</span></a></li>
             </ul>
           </li>
           <li>
@@ -208,6 +208,13 @@
       <!-- Main content -->
       <section class="content container-fluid">
 
+        <?php if(Session::has('flash_message')): ?>
+
+        <div class="alert alert-success text-capitalize text-center">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"> &times;</button>
+        <?php echo e(Session::get('flash_message')); ?> <?php echo e(Session::forget('flash_message')); ?></div>
+
+        <?php endif; ?>
         <?php echo $__env->yieldContent('contents'); ?>
 
       </section>

@@ -20,6 +20,8 @@ Route::get('about', 'PostsController@about')->middleware('auth');
 
 Auth::routes();
 
+Route::resource('Payslip', 'PayslipController');
+
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('index', 'HomeController@index')->name('home')->middleware('auth');
 
@@ -37,12 +39,14 @@ Route::post('route','RoutesController@saveRoute')->middleware('auth');
 
 Route::post('search','SearchController@yearly')->middleware('auth');
 
-Route::post('savePayslip','PayslipsController@store')->middleware('auth');
+Route::post('savePayslip','PayslipController@store')->middleware('auth');
 
-Route::get('payslip','PayslipsController@index')->middleware('auth');
+Route::get('payslip','PayslipController@index')->middleware('auth');
 
 Route::get('profile','ProfileController@create')->middleware('auth');
 
 Route::get('profile/show','ProfileController@show')->middleware('auth');
+
+Route::get('payslip/show','PayslipController@show')->middleware('auth');
 
 Route::post('send/profile','ProfileController@store')->middleware('auth');
