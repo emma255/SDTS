@@ -40,8 +40,22 @@ class ProfileController extends Controller
 
         $test = Profile::where('user_id',Auth::user()->id)->first();
 
-        $path = $request->file('photo')->store('avatars');
+        $path;
 
+        if($request->photo == null){
+            $path = 'avatars/default.JPG';
+        }
+
+        else {
+            $path = $request->file('photo')->store('avatars');
+        }
+
+    $this->validate(request(),[
+        'profession'=>'required',
+        'education_level'=>'required',
+        'institution'=>'required',
+        'description'=>'required',
+    ]);
             if($test != null){
 
                  Profile::where('user_id',Auth::user()->id)->update([
@@ -52,6 +66,8 @@ class ProfileController extends Controller
                     'institution'=>request('institution'),
                     'description'=>request('description'),
                 ]);
+                session()->flash('flash_message', 'Successfully updated the profile!!');
+
             }
 
             else {
@@ -64,6 +80,8 @@ class ProfileController extends Controller
                     'institution'=>request('institution'),
                     'description'=>request('description'),
                 ]);
+                session()->flash('flash_message', 'Successfully created the profile!!');
+
             }
        
 
@@ -88,7 +106,7 @@ class ProfileController extends Controller
             $image = $images;
 
         } else {
-            $image = null;
+            $image = 'avatars/default.JPG';
         }
         
 

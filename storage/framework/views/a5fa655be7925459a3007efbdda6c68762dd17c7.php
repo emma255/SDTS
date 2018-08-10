@@ -1,5 +1,4 @@
-<html>
-  <head>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
@@ -68,5 +67,3 @@
         chart.draw(data, options);
       }
     </script>
-  </head>
-</html>

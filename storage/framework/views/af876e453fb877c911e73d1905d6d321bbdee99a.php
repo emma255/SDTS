@@ -1,78 +1,81 @@
-<?php $__env->startSection('content'); ?>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="box">
-                <div class="box-header bg-gray"><?php echo e(__('Register')); ?></div>
+<?php echo $__env->make('header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                <div class="box-body bg-gray-active">
-                    <form method="POST" action="<?php echo e(route('register')); ?>">
-                        <?php echo csrf_field(); ?>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="login-logo">
+            <a href="<?php echo e(url('/')); ?>"><?php echo e(config('app.name', 'SDTS')); ?> </a>
+          </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Name')); ?></label>
+        <div class="register-box-body">
+            <p class="login-box-msg"><?php echo e(__('Register a new membership')); ?></p>
 
-                            <div class="col-md-8">
-                                <input id="name" type="text" class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
+            <form action="<?php echo e(route('register')); ?>" method="post">
+                    <?php echo csrf_field(); ?>
 
-                                <?php if($errors->has('name')): ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?php echo e($errors->first('name')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+                <div class="form-group has-feedback">
+                    <input type="text" placeholder="Full name" class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail Address')); ?></label>
-
-                            <div class="col-md-8">
-                                <input id="email" type="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required>
-
-                                <?php if($errors->has('email')): ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?php echo e($errors->first('email')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
-
-                            <div class="col-md-8">
-                                <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
-
-                                <?php if($errors->has('password')): ?>
-                                    <span class="invalid-feedback">
-                                        <strong><?php echo e($errors->first('password')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Confirm Password')); ?></label>
-
-                            <div class="col-md-8">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <?php echo e(__('Register')); ?>
-
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <?php if($errors->has('name')): ?>
+                        <span class="invalid-feedback">
+                            <strong><?php echo e($errors->first('name')); ?></strong>
+                        </span>
+                    <?php endif; ?>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<?php $__env->stopSection(); ?>
+                <div class="form-group has-feedback">
+                    <input type="email" placeholder="Email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required>
 
-<?php echo $__env->make('layout.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php if($errors->has('email')): ?>
+                        <span class="invalid-feedback">
+                            <strong><?php echo e($errors->first('email')); ?></strong>
+                        </span>
+                    <?php endif; ?>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" placeholder="Password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
+
+                    <?php if($errors->has('password')): ?>
+                        <span class="invalid-feedback">
+                            <strong><?php echo e($errors->first('password')); ?></strong>
+                        </span>
+                    <?php endif; ?>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation" required>
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <!-- /.col -->
+                    <div class="col-xs-offset-8">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo e(__('Register')); ?></button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            <a href="<?php echo e(route('login')); ?>" class="text-center"><?php echo e(__('I already have a membership')); ?></a>
+        </div>
+        <!-- /.form-box -->
+    </div>
+    <!-- /.register-box -->
+
+    <!-- jQuery 3 -->
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="../../plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+              checkboxClass: 'icheckbox_square-blue',
+              radioClass: 'iradio_square-blue',
+              increaseArea: '20%' // optional
+            });
+          });
+    </script>
+</body>
+
+</html>

@@ -23,7 +23,10 @@ Auth::routes();
 Route::resource('Payslip', 'PayslipController');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+
 Route::get('index', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/login2', 'HomeController@login');
 
 Route::get('shopping','ShoppingController@index')->middleware('auth');
 

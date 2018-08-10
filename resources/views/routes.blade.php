@@ -3,7 +3,7 @@
 @section('contents')
 <div class="row">
    
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-3" style="background: linear-gradient(to bottom right, darkslateblue, brown, green); color: white">
         <h3 align="center">Add the routes made</h3>
         <table class="table">
             <tr>

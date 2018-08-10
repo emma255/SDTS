@@ -45,7 +45,8 @@ class PayslipController extends Controller
             'picture'=>$path,
             'user_id'=>Auth::user()->id,
         ]);
- 
+        session()->flash('flash_message', 'Successfully added the payslip!!');
+
  
          return back();
     }
@@ -72,7 +73,7 @@ class PayslipController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('edit-payment')->with('id',$id);
     }
 
     /**
@@ -82,9 +83,31 @@ class PayslipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        if (Payslips::find($id) == null){
+            session()->flash('flash_message', 'Failed, no such payment exist!!');
+        }
+        else{
+
+            $this->validate(request(), [
+                'purpose' => 'required',
+                'description' => 'required',
+                'slip' => 'required',
+            ]);
+            $path = request()->file('slip')->store('payslips');
+
+            Payslips::where('id', $id)->update([
+                'purpose' =>request('purpose'),
+                'description' => request('description'),
+                'picture' => $path,
+            ]);
+
+            session()->flash('flash_message', 'Successfully edited your profile!!');
+
+        }
+
+        return redirect('payslip/show');
     }
 
     /**

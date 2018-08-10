@@ -52,4 +52,8 @@ class HomeController extends Controller
             return view('progressRecords.chart',['Weight'=>json_encode($result), 'name'=>$name  ]);
             }
     }
+
+    public function login(){
+        return view('auth.passwords.email2');
+    }
 }

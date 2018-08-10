@@ -8,9 +8,9 @@
       <!-- Logo -->
       <a href="{{asset('home')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>SDMT</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>SDTS</b></span>
+        <span class="logo-lg"><b>SDMT System</b></span>
       </a>
 
       <!-- Header Navbar -->
@@ -24,7 +24,7 @@
           <ul class="nav navbar-nav">
 
             <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
+            {{-- <li class="dropdown notifications-menu">
               <!-- Menu toggle button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i>
@@ -46,9 +46,9 @@
                 </li>
                 <li class="footer"><a href="#">View all</a></li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Tasks Menu -->
-            <li class="dropdown tasks-menu">
+            {{-- <li class="dropdown tasks-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-flag-o"></i>
@@ -83,21 +83,21 @@
                   <a href="#">View all tasks</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   @foreach(DB::table('profiles')->where('user_id',Auth::user()->id)->pluck('photo') as $img)
                 <!-- The user image in the navbar-->
-                <img src="{{ asset('../storage/app/'.$img)}}" class="user-image" alt="{{Auth::user()->name}}">
+                <img src="{{ asset('../storage/app/'.$img)}}" class="user-image" alt="{{Auth::user()->name}}">@endforeach
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">{{Auth::user()->name}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
-                <li class="user-header">
-                  <img src="{{ asset('../storage/app/'.$img)}}" class="img-circle" alt=""> @endforeach
+                <li class="user-header">@foreach(DB::table('profiles')->where('user_id',Auth::user()->id)->pluck('photo') as $img)
+                  <img src="{{ asset('../storage/app/'.$img)}}" class="img-circle" alt="{{Auth::user()->name}}"> @endforeach
 
                   <p>
                     {{Auth::user()->name}} - @foreach(DB::table('profiles')->where('user_id',Auth::user()->id)->pluck('profession') as $pro)
@@ -200,8 +200,8 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Students Daily tracking System
-          <small>SDTS</small>
+          Students Daily Money Tracking System
+          <small>SDMT</small>
         </h1>
       </section>
 
@@ -229,7 +229,7 @@
         Anything you want
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2018 <a href="https://twitter.com/Emman_Angelus?lang=en">Emma de Anitha</a>.</strong> All rights reserved.
     </footer>
 
     <div class="control-sidebar-bg"></div>

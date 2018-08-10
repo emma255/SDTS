@@ -5,7 +5,7 @@
     <div class="box-header text-center text-bold">Shoppings made</div>
     <div class="box-body">
 
-        <table class="table table-striped table-responsive table-bordered table-condensed text-center">
+        <table class="table table-striped table-responsive table-bordered table-condensed">
             <tr>
                 <th>Product name</th>
                 <th>Quantity</th>

@@ -1,8 +1,8 @@
  
 <?php $__env->startSection('contents'); ?>
 <div class="col-md-8">
-    <div class="box col-md-offset-4">
-        <div class="box-header">
+    <div class="box col-md-offset-4" style="background: linear-gradient(to right, #003300 , #003366); color: white">
+        <div class="box-header text-lime">
             <h3 align="center">Profile details</h3>
         </div>
         <div class="box-body">
