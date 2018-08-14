@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'SDTS') }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('imgs/icon5.png') }}" rel="shortcut icon" type="image/x-icon">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

@@ -3,6 +3,7 @@
 namespace SDTS\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,28 +29,26 @@ class HomeController extends Controller
 
     public function chart(){
 
-        $test = Infant::where('namba_ya_usajili',request('namba'))->first();
+        $test1 = Shopping::where(['user_id',Auth::user()->id],['quantity','>',5],['price','>=','1000'])->first();
 
-            if($test == null){
-                $error_txt = 'Hamna taarifa zilizohifadhiwa za '.request('namba');
+            if($test1 != null){
 
-                return view('error-view')->with('error_txt',$error_txt);
-            }
-            else{
 
-                $name = RegisterChild::where('namba_ya_mtoto',request('namba'))->pluck('jina_la_mtoto');
+                $name = Auth::user()->name;
 
-                $Weight = DB::table('infants')->select(DB::raw("sum(uzito) as uzito"))->where('namba_ya_usajili',request('namba'))
+                $shopping = DB::table('shoppings')
+                ->select(DB::raw("sum(quantity) as quantity, product_name"))
+                ->where(['user_id',Auth::user()->id],['quantity','>',5],['price','>=','1000'])
                 ->orderBy("tarehe")->groupBy(DB::raw("(tarehe)"))->get();
 
                 $months = 0;
-                $result[] = ['Hudhurio','Uzito'];
+                $result[] = ['Product','Quantity'];
 
-                foreach ($Weight as $key => $value) {
+                foreach ($shopping as $key => $value) {
 
-                $result[++$key] = [$months++, (int)$value->uzito/1000];
+                $result[++$key] = [$value->product_name, $value->quantity];
             }
-            return view('progressRecords.chart',['Weight'=>json_encode($result), 'name'=>$name  ]);
+            return view('charts',['shopping'=>json_encode($result), 'name'=>$name  ]);
             }
     }
 
